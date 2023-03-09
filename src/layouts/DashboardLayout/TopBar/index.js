@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: "10px",
       paddingBottom: "10px",
     },
+    "&.MuiToolbar-root": {
+      display: "block",
+    },
   },
   logo: {
     marginRight: theme.spacing(2),
