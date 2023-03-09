@@ -1,5 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import clsx from "clsx";
+
+
 import PropTypes from "prop-types";
 import {
   AppBar,
@@ -31,6 +33,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Axios from "axios";
 import Apiconfigs from "src/ApiConfig/ApiConfig";
 import { toast } from "react-toastify";
+import Ticker from "../HomeLayout/ticker";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
         color: "#e31a89",
       },
     },
-
   },
   iconbutton: {
     // color: theme.palette.,
@@ -137,12 +139,10 @@ const useStyles = makeStyles((theme) => ({
     "& input": {
       background: "#373636",
       borderRadius: "10px",
-
-
     },
     [theme.breakpoints.down("xs")]: {
       marginTop: "10px",
-      marginLeft: "0px"
+      marginLeft: "0px",
     },
   },
 }));
@@ -159,12 +159,11 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
   );
 };
 
-
 TopBar.propTypes = {
   className: PropTypes.string,
 };
 TopBar.defaultProps = {
-  onMobileNavOpen: () => { },
+  onMobileNavOpen: () => {},
 };
 
 export default TopBar;
@@ -210,10 +209,6 @@ export function TopBarData() {
     </Box>
   );
 
-
-
-
-
   const userRequest = async () => {
     setIsLoading(true);
     setIsSubmit(true);
@@ -244,9 +239,10 @@ export function TopBarData() {
       }
     }
   };
+
   const status = localStorage.getItem("status");
 
-  const checkStatus = window.localStorage.getItem("status")
+  const checkStatus = window.localStorage.getItem("status");
 
   return (
     <>
@@ -264,6 +260,7 @@ export function TopBarData() {
                   }}
                 />
               </Box>
+
               <Box className="rightBox">
                 <Grid container alignItems="center">
                   <Hidden xsDown>
@@ -273,33 +270,31 @@ export function TopBarData() {
                   </Hidden>
                   <Grid item xs={12} sm={7} md={8}>
                     <Box className="menubox">
-
-
-                      {
-                        checkStatus !== "ACTIVE" && (
-                          <Button
-                            color="secondary"
-                            size="small"
-                            variant="contained"
-                            onClick={handleClickOpen}
-                          >
-                            Unblock
-                          </Button>
-                        )
-                      }
-
+                      {checkStatus !== "ACTIVE" && (
+                        <Button
+                          color="secondary"
+                          size="small"
+                          variant="contained"
+                          onClick={handleClickOpen}
+                        >
+                          Unblock
+                        </Button>
+                      )}
                       &nbsp; &nbsp;
                       <Box className={classes.iconbuttonHeader}>
                         <IconButton>
                           <span
-                            style={{ fontSize: "14px", marginRight: "5px", marginTop: "5px" }}
+                            style={{
+                              fontSize: "14px",
+                              marginRight: "5px",
+                              marginTop: "5px",
+                            }}
                             className={
                               location?.pathname === "/chat-history"
                                 ? "active"
                                 : ""
                             }
                             onClick={() => {
-
                               history.push("/chat-history");
                             }}
                           >
@@ -309,7 +304,7 @@ export function TopBarData() {
                         </IconButton>
                         <IconButton className={classes.iconbutton}>
                           <span
-                            style={{ fontSize: "14px", }}
+                            style={{ fontSize: "14px" }}
                             className={
                               location?.pathname === "/wallet" ? "active" : ""
                             }
@@ -328,7 +323,7 @@ export function TopBarData() {
                             }}
                           >
                             <span
-                              style={{ fontSize: "14px", marginRight: "5px", }}
+                              style={{ fontSize: "14px", marginRight: "5px" }}
                               className={
                                 location?.pathname === "/notification-list"
                                   ? "active"
@@ -340,7 +335,6 @@ export function TopBarData() {
                             </span>
                           </IconButton>
                         )}
-
                       </Box>
                       <SwipeableTemporaryDrawer />
                     </Box>
@@ -349,6 +343,7 @@ export function TopBarData() {
               </Box>
             </Box>
           </Grid>
+
           <Hidden smUp>
             <Grid item xs={12}>
               <Box>{searchBox}</Box>
@@ -401,6 +396,7 @@ export function TopBarData() {
           </DialogActions>
         </Dialog>
       </Box>
+      <Ticker/>
 
       {/* <Hidden smUp> */}
       {/* <Box>{searchBox}</Box> */}

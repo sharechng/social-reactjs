@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
   desktopDrawer: {
     width: 200,
-    top: 72,
+    top: 115,
     left: "30px",
     height: "100%",
     background: theme.palette.background.default,
